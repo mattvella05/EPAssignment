@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MatthewVellaEPSolution.DataAccess;
 using MatthewVellaEPSolution.Domain;
+using MatthewVellaEPSolution.Presentation.Filters;
 
 namespace MatthewVellaEPSolution.Presentation.Controllers
 {
@@ -53,11 +54,13 @@ namespace MatthewVellaEPSolution.Presentation.Controllers
         }
 
         [HttpPost("Vote/{id}")]
+        [ServiceFilter(typeof(AuthorizeVoteAttribute))]
         public IActionResult Vote(int id, int optionNumber)
         {
             _pollRepository.Vote(id, optionNumber);
             return RedirectToAction("Results", new { id = id });
         }
+
 
         [HttpGet("Results/{id}")]
         public IActionResult Results(int id)

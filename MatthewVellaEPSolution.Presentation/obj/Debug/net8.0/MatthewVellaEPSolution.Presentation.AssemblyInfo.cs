@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MatthewVellaEPSolution.Presentation")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9bf9f68d0d8a03b6b69edf4ddd9a69a69fec0e6e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e542cb6e505865b2fa6ac1ed6a6010ff2d404808")]
 [assembly: System.Reflection.AssemblyProductAttribute("MatthewVellaEPSolution.Presentation")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MatthewVellaEPSolution.Presentation")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
