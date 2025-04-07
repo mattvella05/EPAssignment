@@ -1,0 +1,34 @@
+﻿@model IEnumerable<MatthewVellaEPSolution.Domain.Poll>
+
+@{
+    ViewData["Title"] = "Polls";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a href="@Url.Action("Create", "Poll")" class="btn btn-primary">Create New Poll</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date Created</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var poll in Model)
+        {
+            <tr>
+                <td>@poll.Title</td>
+                <td>@poll.DateCreated.ToShortDateString()</td>
+                <td>
+                    <a href="@Url.Action("Vote", "Poll", new { id = poll.Id })" class="btn btn-info">Vote</a>
+                    <a href="@Url.Action("Results", "Poll", new { id = poll.Id })" class="btn btn-secondary">Results</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

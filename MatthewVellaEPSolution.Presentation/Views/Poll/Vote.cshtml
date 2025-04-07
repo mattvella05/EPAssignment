@@ -1,0 +1,22 @@
+﻿<form asp-action="Vote" method="post" asp-route-id="@Model.Id">
+    <input type="hidden" name="pollId" value="@Model.Id" />
+    <div>
+        <label>
+            <input type="radio" name="optionNumber" value="1" required />
+            @Model.Option1Text
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="radio" name="optionNumber" value="2" required />
+            @Model.Option2Text
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="radio" name="optionNumber" value="3" required />
+            @Model.Option3Text
+        </label>
+    </div>
+    <button type="submit">Submit Vote</button>
+</form>

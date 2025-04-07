@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MatthewVellaEPSolution.DataAccess")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+686419207a7449794519a9ed8181928f7f683deb")]
 [assembly: System.Reflection.AssemblyProductAttribute("MatthewVellaEPSolution.DataAccess")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MatthewVellaEPSolution.DataAccess")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
