@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MatthewVellaEPSolution.DataAccess
 {
-    public class PollRepository
+    public class PollRepository : CommonPollRepository
     {
         private readonly PollDbContext _context;
 

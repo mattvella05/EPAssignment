@@ -8,7 +8,10 @@ builder.Services.AddDbContext<PollDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Register PollRepository to be used with constructor injection
-builder.Services.AddScoped<PollRepository>();
+builder.Services.AddScoped<CommonPollRepository, PollRepository>();
+
+//builder.Services.AddScoped<CommonPollRepository, PollFileRepository>();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -33,6 +36,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Poll}/{action=Index}/{id?}");
-
 
 app.Run();

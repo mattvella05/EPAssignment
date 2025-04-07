@@ -13,7 +13,6 @@ namespace MatthewVellaEPSolution.Presentation.Controllers
             _logger = logger;
         }
 
-        [HttpGet("Index")]
         public IActionResult Index()
         {
             return View();

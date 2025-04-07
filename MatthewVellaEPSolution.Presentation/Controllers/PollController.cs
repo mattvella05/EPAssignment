@@ -7,9 +7,9 @@ namespace MatthewVellaEPSolution.Presentation.Controllers
     [Route("Poll")]
     public class PollController : Controller
     {
-        private readonly PollRepository _pollRepository;
+        private readonly CommonPollRepository _pollRepository;
 
-        public PollController(PollRepository pollRepository)
+        public PollController(CommonPollRepository pollRepository)
         {
             _pollRepository = pollRepository;
         }
@@ -56,7 +56,6 @@ namespace MatthewVellaEPSolution.Presentation.Controllers
         public IActionResult Vote(int id, int optionNumber)
         {
             _pollRepository.Vote(id, optionNumber);
-
             return RedirectToAction("Results", new { id = id });
         }
 

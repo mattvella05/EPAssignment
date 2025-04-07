@@ -1,36 +1,48 @@
-﻿using System.Text.Json;
+﻿using MatthewVellaEPSolution.DataAccess;
 using MatthewVellaEPSolution.Domain;
+using System.Text.Json;
 
-namespace MatthewVellaEPSolution.DataAccess
+public class PollFileRepository : CommonPollRepository
 {
-    public class PollFileRepository
+    private readonly string _filePath = "polls.json";
+
+    public void CreatePoll(Poll poll)
     {
-        private readonly string _filePath = "polls.json";
+        var polls = GetPolls().ToList();
+        poll.Id = polls.Count > 0 ? polls.Max(p => p.Id) + 1 : 1;
+        poll.DateCreated = DateTime.Now;
+        polls.Add(poll);
+        SavePollsToFile(polls);
+    }
 
-        // CreatePoll - Adds a poll to the JSON file
-        public void CreatePoll(Poll poll)
+    public List<Poll> GetPolls()
+    {
+        if (!File.Exists(_filePath))
+            return new List<Poll>();
+
+        string json = File.ReadAllText(_filePath);
+        return JsonSerializer.Deserialize<List<Poll>>(json) ?? new List<Poll>();
+    }
+
+    public void Vote(int pollId, int optionNumber)
+    {
+        var polls = GetPolls().ToList();
+        var poll = polls.FirstOrDefault(p => p.Id == pollId);
+        if (poll == null) return;
+
+        switch (optionNumber)
         {
-            var polls = GetPolls().ToList();
-            poll.Id = polls.Count > 0 ? polls.Max(p => p.Id) + 1 : 1;
-            poll.DateCreated = DateTime.Now;
-            polls.Add(poll);
-            SavePollsToFile(polls);
+            case 1: poll.Option1VotesCount++; break;
+            case 2: poll.Option2VotesCount++; break;
+            case 3: poll.Option3VotesCount++; break;
         }
 
-        // GetPolls - Reads all polls from the JSON file
-        public IEnumerable<Poll> GetPolls()
-        {
-            if (!File.Exists(_filePath))
-                return new List<Poll>();
+        SavePollsToFile(polls);
+    }
 
-            string json = File.ReadAllText(_filePath);
-            return JsonSerializer.Deserialize<List<Poll>>(json) ?? new List<Poll>();
-        }
-
-        private void SavePollsToFile(List<Poll> polls)
-        {
-            string json = JsonSerializer.Serialize(polls, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(_filePath, json);
-        }
+    private void SavePollsToFile(List<Poll> polls)
+    {
+        string json = JsonSerializer.Serialize(polls, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText(_filePath, json);
     }
 }
